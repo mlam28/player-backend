@@ -1,0 +1,11 @@
+defaults: &defaults
+  client_id: '8b57443c0800482d8832fc8e6193b3e0'
+  client_secret: 'bfabaf481cc0404ba14f62d84f5191ea'
+
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  
