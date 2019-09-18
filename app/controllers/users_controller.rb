@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         if user === nil
         user = User.create(display_name: spotify_user.display_name, spotify_id: spotify_user.id, spotify_uri: spotify_user.uri)
         end
-        byebug
+    
         auth_params = {id: user.id, display_name: user.display_name, spotify_id: user.spotify_id, access_token: spotify_user.credentials.token, spotify_uri: user.spotify_uri}
         # render json: spotify_user.to_hash
         redirect_to 'http://localhost:3001/#' + auth_params.to_query

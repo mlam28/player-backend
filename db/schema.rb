@@ -30,14 +30,14 @@ ActiveRecord::Schema.define(version: 2019_09_18_172854) do
   end
 
   create_table "song_playlists", force: :cascade do |t|
-    t.integer "song_spotify_id"
+    t.string "song_spotify_id"
     t.integer "playlist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "user_playlists", force: :cascade do |t|
-    t.integer "playlist_spotify_id"
+    t.string "playlist_spotify_id"
     t.integer "playlist_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2019_09_18_172854) do
 
   create_table "users", force: :cascade do |t|
     t.string "display_name"
-    t.integer "spotify_id"
+    t.string "spotify_id"
     t.string "spotify_uri"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
