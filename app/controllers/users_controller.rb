@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         }
         url = 'https://accounts.spotify.com/authorize'
         redirect_to "#{url}?#{query_params.to_query}"
-        # redirect_to '/auth/spotify'
+      
     end
 
     def spotify
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
         user = User.create(display_name: spotify_user.display_name, spotify_id: spotify_user.id, spotify_uri: spotify_user.uri)
         end
     
-        auth_params = {id: user.id, display_name: user.display_name, spotify_id: user.spotify_id, access_token: spotify_user.credentials.token, spotify_uri: user.spotify_uri}
+        auth_params = {id: user.id, display_name: user.display_name, spotify_id: user.spotify_id, token: spotify_user.credentials.token, spotify_uri: user.spotify_uri}
         # render json: spotify_user.to_hash
         redirect_to 'http://localhost:3001/#' + auth_params.to_query
     end
