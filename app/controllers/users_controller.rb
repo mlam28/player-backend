@@ -33,6 +33,22 @@ class UsersController < ApplicationController
     end
 
 
+    def show
+        user = User.find(params[:id])
+
+        formatted_playlists = user.user_playlists.map do |user_playlist|
+            playlist = user_playlist.playlist
+            {name: playlist.name, id: playlist.id, uri: user_playlist.playlist_spotify_id, images:[], songs: playlist.song_playlists}
+        end
+       
+        render json: formatted_playlists
+    end
+
+    def find_playlists
+        user = User.find(params[:id])
+    end
+
+
 
     private
 
@@ -40,7 +56,8 @@ class UsersController < ApplicationController
     def user_serializer_options
         {:include => {
             :playlists => {:include => {:users => {:except => [:created_at, :updated_at]},
-                    :song_playlists => {:except => [:created_at, :updated_at]}
+                    :song_playlists => {:except => [:created_at, :updated_at]},
+                    :user_playlists => {:except => [:created_at, :updated_at]}
                 }
             }
         },
