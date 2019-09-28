@@ -38,9 +38,8 @@ class UsersController < ApplicationController
 
         formatted_playlists = user.user_playlists.map do |user_playlist|
             playlist = user_playlist.playlist
-            {name: playlist.name, id: playlist.id, uri: user_playlist.playlist_spotify_id, images:[], songs: playlist.song_playlists}
+            {name: playlist.name, id: playlist.id, uri: user_playlist.playlist_spotify_id, images:[], songs: SongPlaylist.format_with_likes(playlist.song_playlists)}
         end
-       
         render json: formatted_playlists
     end
 
@@ -63,6 +62,17 @@ class UsersController < ApplicationController
         },
         :except => [:created_at, :updated_at]
     }
+    end
+
+
+    def song_serializer_options
+        {
+            :include => {
+                :likes => {
+                    :include => {:users =>{:except => [:created_at, :updated_at]}}
+                }
+            }
+        }
     end
 
 end
