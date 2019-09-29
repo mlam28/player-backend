@@ -5,8 +5,12 @@ class SongPlaylist < ApplicationRecord
 
     def self.format_with_likes(song_playlists)
         song_playlists.map do |song|
-            {name: song.name, artist: song.artist, uri: song.uri, time: song.time, playlist_id: song.playlist_id, artist_uri: song.artist_uri, likes: song.likes}
+            {id: song.id, name: song.name, artist: song.artist, uri: song.uri, time: song.time, playlist_id: song.playlist_id, artist_uri: song.artist_uri, likes: song.likes}
         end
+    end
+
+    def format
+        {id: self.id, name: self.name, artist: self.artist, uri: self.uri, time: self.time, playlist_id: self.playlist_id, artist_uri: self.artist_uri, likes: self.likes}
     end
 
 end
