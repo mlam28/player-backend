@@ -6,7 +6,15 @@ class SongPlaylistsController < ApplicationController
 
     def create
         song = SongPlaylist.create(song_params)
-        render json: {playlist_id: song.playlist.id, song: song}
+        render json: {playlist_id: song.playlist.id, song: song.format}
+    end
+    
+    def destroy
+        song = SongPlaylist.find(params[:id])
+        id = song.id
+        playlistId = song.playlist_id
+        song.destroy
+        render json: {message: 'successfully deleted', songId: id, playlistId: playlistId}
     end
 
     private
