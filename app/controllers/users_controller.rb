@@ -59,7 +59,7 @@ class UsersController < ApplicationController
        new_playlist.add_tracks!(user_spotify_params[:tracks])
        new_uri = new_playlist.uri
        user_playlist.update(playlist_spotify_id: new_uri)
-        render json: {spotify_playlist_uri: new_uri, message: 'succesfully downloaded'}
+        render json: {spotify_playlist_uri: new_uri, message: 'successfully downloaded!'}
     end
 
 
