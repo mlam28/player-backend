@@ -25,11 +25,11 @@ class UsersController < ApplicationController
 
         
     
-        auth_params = {id: user.id, display_name: user.display_name, spotify_id: user.spotify_id, token: spotify_user.credentials.token, spotify_uri: user.spotify_uri}
+        auth_params = {id: user.id, display_name: user.display_name, spotify_id: user.spotify_id, token: spotify_user.credentials.token, spotify_uri: user.spotify_uri, image: user.image}
         # render json: spotify_user.to_hash
         redirect_to 'http://localhost:3001/#' + auth_params.to_query
     end
-
+''
     def index
         users = User.all 
         render json: users.to_json(user_serializer_options)
