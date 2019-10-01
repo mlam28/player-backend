@@ -14,6 +14,7 @@ class SongPlaylistsController < ApplicationController
         id = song.id
         playlistId = song.playlist_id
         song.destroy
+
         render json: {message: 'successfully deleted', songId: id, playlistId: playlistId}
     end
 

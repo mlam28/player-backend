@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_30_132050) do
+ActiveRecord::Schema.define(version: 2019_10_01_143600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "back_logs", force: :cascade do |t|
+    t.integer "playlist_id"
+    t.integer "user_id"
+    t.text "action"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "likes", force: :cascade do |t|
     t.boolean "liked"
@@ -57,6 +65,7 @@ ActiveRecord::Schema.define(version: 2019_09_30_132050) do
     t.datetime "updated_at", null: false
     t.string "token"
     t.text "spotify_info"
+    t.string "image"
   end
 
 end

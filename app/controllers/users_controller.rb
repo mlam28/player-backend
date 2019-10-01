@@ -15,11 +15,12 @@ class UsersController < ApplicationController
 
     def spotify
         spotify_user = RSpotify::User.new(request.env['omniauth.auth'])
+        
         user = User.find_by(spotify_id: spotify_user.id)
         if user === nil
-            user = User.create(display_name: spotify_user.display_name, spotify_id: spotify_user.id, spotify_uri: spotify_user.uri, token: spotify_user.credentials.token, spotify_info: spotify_user.to_hash)
+            user = User.create(display_name: spotify_user.display_name, spotify_id: spotify_user.id, spotify_uri: spotify_user.uri, token: spotify_user.credentials.token, spotify_info: spotify_user.to_hash, image: spotify_user.images[0].url)
         else
-            user.update(token: spotify_user.credentials.token, spotify_info: spotify_user.to_hash)
+            user.update(token: spotify_user.credentials.token, spotify_info: spotify_user.to_hash, image: spotify_user.images[0].url)
         end
 
         

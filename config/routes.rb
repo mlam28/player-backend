@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :back_logs
   get '/auth/spotify/callback', to: 'users#spotify'
   resources :users
   resources :likes

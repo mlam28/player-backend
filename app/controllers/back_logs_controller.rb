@@ -1,0 +1,2 @@
+class BackLogsController < ApplicationController
+end
