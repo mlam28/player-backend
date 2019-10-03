@@ -2,8 +2,8 @@ class PlaylistsController < ApplicationController
 
     def create
         playlist = Playlist.create(playlist_params) 
-        playlist_data = {name: playlist.name, id: playlist.id, uri: '', images: [], songs: []} 
-
+        playlist_data = {name: playlist.name, id: playlist.id, uri: '', images: [{url: playlist.image}], songs: []} 
+        byebug
         render json: playlist_data
     end
 
@@ -26,6 +26,6 @@ class PlaylistsController < ApplicationController
     private
 
     def playlist_params
-        params.require(:playlist).permit(:name, :playlist_spotify_id, user_ids: [])
+        params.require(:playlist).permit(:name, :playlist_spotify_id, :image, user_ids: [])
     end
 end
