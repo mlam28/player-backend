@@ -23,4 +23,6 @@ class SongPlaylistsController < ApplicationController
     def song_params
         params.require(:song_playlist).permit(:name, :uri, :time, :artist_uri, :playlist_id, :artist)
     end
+
+
 end

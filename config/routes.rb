@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/auth/spotify/callback', to: 'users#spotify'
   resources :users
   resources :likes
+  post '/dislikes', to: 'likes#create_dislike'
   resources :song_playlists
   resources :playlists, except: [:show]
   get '/playlists/:id/:user_id', to: 'playlists#show'
