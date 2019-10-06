@@ -41,7 +41,12 @@ class UsersController < ApplicationController
 
         formatted_playlists = user.user_playlists.map do |user_playlist|
             playlist = user_playlist.playlist
-            {name: playlist.name, playlist_uri: user_playlist.playlist_spotify_id, id: playlist.id, uri: user_playlist.playlist_spotify_id, images:[], songs: SongPlaylist.format_with_likes(playlist.song_playlists)}
+            if !playlist.image.nil?
+                image = [{url: playlist.image}]
+            else
+                image = []
+            end
+            {name: playlist.name, playlist_uri: user_playlist.playlist_spotify_id, id: playlist.id, uri: user_playlist.playlist_spotify_id, images: image, songs: SongPlaylist.format_with_likes(playlist.song_playlists)}
         end
         render json: formatted_playlists
     end
@@ -65,6 +70,7 @@ class UsersController < ApplicationController
 
 
     def updatespotify
+        byebug
         user = User.find(user_spotify_params[:userId])
         spotify_user = RSpotify::User.new(user.spotify_info)
         user_playlist = UserPlaylist.find_by(user_id: user_spotify_params[:userId], playlist_id: user_spotify_params[:playlistId])

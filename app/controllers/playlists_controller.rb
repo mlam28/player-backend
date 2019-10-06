@@ -3,7 +3,7 @@ class PlaylistsController < ApplicationController
     def create
         playlist = Playlist.create(playlist_params) 
         playlist_data = {name: playlist.name, id: playlist.id, uri: '', images: [{url: playlist.image}], songs: []} 
-        byebug
+
         render json: playlist_data
     end
 

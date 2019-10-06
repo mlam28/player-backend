@@ -10,7 +10,7 @@ class UserPlaylistsController < ApplicationController
         else 
         user_playlist = UserPlaylist.find_by(user_id: other_user.id, playlist_id: up_params[:playlist_id])
             if user_playlist.nil?
-                byebug
+
             user_playlist = UserPlaylist.create(user_id: other_user.id, playlist_id: up_params[:playlist_id])
             render json: {user: {name: other_user.display_name, spotify_uri: other_user.spotify_uri}, message: 'user added to this playlist'}
             else
