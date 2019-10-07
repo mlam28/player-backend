@@ -22,6 +22,12 @@ class PlaylistsController < ApplicationController
         render json: formatted
     end
 
+    def destroy
+        playlist = Playlist.find(params[:id])
+        playlist.destroy
+        render json: {message: 'successfully deleted'}
+    end
+
 
     private
 
